@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>messenger</title>
+</head>
+
+<body>
+    <h2>messenger</h2>
+    <form action="http://localhost:8080/chats/new">
+        <input type="submit" value="New chat">
+    </form>
+    <% for(let chat of chats){ %>
+        <div>
+            <p>sent: <%= chat.from %>
+            </p>
+            <p>received: <%= chat.to %>
+            </p>
+            <p>
+                <%= chat.message %>
+            </p>
+            <p>
+                <%= chat.sent.toString().split(" ")[4] %></p>
+    <p><%= chat.sent.toString().split(" ").slice(0,4).join(" -")%>
+            </p>
+            <form action="http://localhost:8080/chats/<%= chat.id %>/edit">
+                <button>Edit</button>
+            </form>
+            <form action="http://localhost:8080/chats/<%= chat.id %>?_method=DELETE" method="post">
+                <button>Delete</button>
+            </form>
+        </div>
+        <hr>
+
+        <% } %>
+</body>
+
+</html>

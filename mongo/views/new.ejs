@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>New chat:</h2>
+    <form action="http://localhost:8080/chats" method="post">
+        From: <input type="text" name="from"><br><br>
+        To: <input type="text" name="to"><br><br>
+        Message: <textarea name="message"></textarea><br><br>
+        Sent: <input type="text" name="sent" value=" <%=new Date()%>" %><br><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+
+</html>
