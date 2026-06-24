@@ -1,0 +1,23 @@
+Beginner middleware activities
+Create a middleware that prints:
+HTTP method
+URL
+current time
+Create a middleware that adds a new property to req and use it in a route.
+Create a middleware that counts how many requests your server receives.
+Create a middleware that blocks access to a route if a condition is false.
+Create a middleware that only allows requests from a specific HTTP method (GET/POST/etc).
+
+Intermediate
+Create a middleware that checks if a user is logged in before accessing /profile.
+Create a middleware that checks if a user is an admin before accessing /admin.
+Create a middleware that measures how long each request takes.
+Create a middleware that logs errors into a file.
+Create a middleware that validates incoming JSON data before sending it to a controller.
+
+Advanced
+Create a chain of 3 middlewares and predict the execution order.
+Create your own version of express.json() (parse JSON manually).
+Create a rate-limit middleware (limit requests per user).
+Create a middleware that attaches database user information to req.user.
+Build an API where every route uses different middleware combinations.
