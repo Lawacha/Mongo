@@ -51,6 +51,21 @@ app.use((req,res,next)=>{
     }
 })
 
+//Create a middleware that checks if a user is logged in before accessing /profile.
+app.use((req,res,next)=>{
+    let {access}=req.query
+    if(access!=='loggedin'){
+        res.send('not logged in')
+    }
+    else {
+        next()
+    }
+})
+
+app.get('/profile',(req,res)=>{
+    res.send('profile')
+})
+
 app.get('/login',(req,res)=>{
     res.send(`${req.method},${req.url},${req.user.name},${req.count}`)
 })
