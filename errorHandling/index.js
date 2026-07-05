@@ -17,6 +17,11 @@ const checkToken=(req,res,next)=>{
     }
 }
 
+//create an admin route , send error with 403 status code
+app.get('/admin',(req,res)=>{
+    throw new ExpressError(403,'cannot access as admin')
+})
+
 app.get('/api',checkToken,(req,res)=>{
     res.send('data')
 })
