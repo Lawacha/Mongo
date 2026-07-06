@@ -91,12 +91,20 @@ function validationErr(err) {
     err.message = "Please provide valid data.";
     return err;
 }
+function CastError(err) {
+    err.status = 400;
+    err.message = "typecast error: there is problem type casting";
+    return err;
+}
 
 //mongoose error
 app.use((err,req,res,next)=>{
     console.log(err.name)
     if(err.name==='ValidationError'){
         err=validationErr(err)
+    }
+    else if(err.name==='CastError'){
+        err=CastError(err)
     }
     next(err)
 })
