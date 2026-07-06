@@ -37,8 +37,9 @@ app.get('/chats', async (req, res) => {
 app.get('/chats/new', (req, res) => {
     res.render('new.ejs')
 })
-app.post('/chats', async (req, res) => {
-    let { from, to, message, sent } = req.body;
+app.post('/chats', async (req, res,next) => {
+ try{
+       let { from, to, message, sent } = req.body;
     await new Chat({
         from: from,
         to: to,
@@ -46,6 +47,10 @@ app.post('/chats', async (req, res) => {
         sent: sent
     }).save()
     res.redirect('/chats')
+ }
+ catch(err){
+    next(err)
+ }
 
 })
 
@@ -81,9 +86,24 @@ app.get('/chats/:id',async(req,res)=>{
     res.render('show.ejs',{chat})
 })
 
+function validationErr(err) {
+    err.status = 400;
+    err.message = "Please provide valid data.";
+    return err;
+}
+
+//mongoose error
+app.use((err,req,res,next)=>{
+    console.log(err.name)
+    if(err.name==='ValidationError'){
+        err=validationErr(err)
+    }
+    next(err)
+})
+
 app.use((err,req,res,next)=>{
     let {status=500,message='error occured'}=err
-    console.log('error')
+    console.log(err.message)
     res.status(status).send(message)
 })
 
