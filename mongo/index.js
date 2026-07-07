@@ -9,6 +9,14 @@ const ExpressError=require('./ExpressError.js')
 const app = express()
 const port = 8080
 
+//logger
+app.use((req,res,next)=>{
+    let time=new Date()
+    let newTime=time.toString().split(' ').slice(0,5).join(' ')
+    console.log(`you logged at ${newTime} `)
+    next()
+})
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 app.use(express.static(path.join(__dirname, '/public')))
@@ -115,10 +123,7 @@ app.use((err,req,res,next)=>{
     res.status(status).send(message)
 })
 
-//sql relationships 
-//one to one
-//one to many
-//many to one
+
 
 app.listen(port, () => {
     console.log(`listening to port:${port}`)
