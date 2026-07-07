@@ -115,6 +115,11 @@ app.use((err,req,res,next)=>{
     res.status(status).send(message)
 })
 
+//sql relationships 
+//one to one
+//one to many
+//many to one
+
 app.listen(port, () => {
     console.log(`listening to port:${port}`)
 })
