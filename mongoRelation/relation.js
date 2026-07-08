@@ -9,6 +9,7 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/mongoRelation');
 }
 
+//one ot few relation
 const User=mongoose.model('User',({
     username:String,
     address:[{
