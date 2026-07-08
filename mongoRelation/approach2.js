@@ -18,24 +18,14 @@ const Customer=mongoose.model('Customer',({
    name:String,
    orders:[
      { type:mongoose.Schema.Types.ObjectId,
-      ref:Order
+      ref:'Order'
      }
    ]
 }))
 
-let addUser=async()=>{
-   let cust1= await Customer.insertOne(
-      {
-         name:'ram',
-      }
-    )
-    let order1=await Order.findOne({name:'samosa'})
-    let order2=await Order.findOne({name:'chana'})
-
-    cust1.orders.push(order1)
-    cust1.orders.push(order2)
-    let result=await cust1.save()
-    console.log(cust1)
+let getData=async()=>{
+   const result=await Customer.findOne().populate('orders','name')
+   console.log(result)
 }
 
-addUser()
+getData()
