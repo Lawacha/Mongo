@@ -6,6 +6,7 @@ const port=8080
 //custom error
 const checkToken=(req,res,next)=>{
     let {query}=req.query
+    console.log(query)
     console.log(req.query.query)
     if(query=='access'){
         next()
@@ -16,6 +17,7 @@ const checkToken=(req,res,next)=>{
 }
 
 app.get('/api',checkToken,(req,res)=>{
+    
      res.send('hellow')
 })
 
