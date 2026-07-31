@@ -36,4 +36,11 @@ async function insertData() {
  console.log(result)
 }
 
-insertData()
+
+
+async function getData() {
+    let result=await User.findOne().populate('orders')
+    console.log((result))
+}
+
+getData()
