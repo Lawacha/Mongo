@@ -37,7 +37,7 @@ async function insertData() {
 }
 
 
-
+//getting data from server 
 async function getData() {
     let result=await User.findOne().populate('orders')
     console.log((result))
