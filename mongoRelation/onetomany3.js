@@ -41,4 +41,6 @@ const getData=async()=>{
     console.log(result)
 }
 
+//pre and post mongoose middleware
+
 getData()
