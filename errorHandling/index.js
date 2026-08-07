@@ -35,7 +35,7 @@ app.use((err,req,res,next)=>{
     res.send(message)
 })
 
-
+//connected successfully
 app.listen(port,()=>{
     console.log(`listening to port: ${port}`)
 })
