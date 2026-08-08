@@ -16,9 +16,20 @@ const checkToken=(req,res,next)=>{
         throw new ExpressError(401,'access denied')
     }
 }
-
+const checkAdmin=(req,res,next)=>{
+    let {token}=req.query
+    if(!token){
+        throw new Error('no token provided')
+    }
+    if(token=='access'){
+       return next()
+    }
+    else {
+        throw new ExpressError(401,'access denied')
+    }
+}
 //create an admin route , send error with 403 status code
-app.get('/admin',checkToken,(req,res)=>{
+app.get('/admin',checkAdmin,(req,res)=>{
     throw new ExpressError(403,'cannot access as admin')
 })
 
