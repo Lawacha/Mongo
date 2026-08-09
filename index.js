@@ -37,9 +37,6 @@ app.get('/api',checkToken,(req,res)=>{
     res.send('data')
 })
 
-app.get('/err',(req,res)=>{
-    abc=abc
-})
 
 app.use((err,req,res,next)=>{
     let {status,message='err occured'}=err
