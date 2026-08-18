@@ -3,29 +3,20 @@ const posts=require('./posts')
 const user=require('./user')
 const app=express()
 const cookieParser=require('cookie-parser')
+const session=require('express-session')
 
 const port=3000
 
-app.use(cookieParser('secretcode'));
-
-app.get('/',(req,res)=>{
-   
-    console.log(req.cookies)
-    res.send(`hellow `)
+app.get('/getCookie',(req,res)=>{
+    res.cookie('name','supp')
+    res.send('name')
 })
 
-
-app.get('/cookies',(req,res)=>{
-    res.cookie('color',"red",{signed:true});
-    res.send('cookie sent')
-})
+app.use(session({secret:'mysecret'}))
 
 app.get('/verify',(req,res)=>{
-    res.send(req.signedCookies)
+    res.send('hellow')
 })
-
-app.use('/',user)
-app.use('/',posts)
 
 app.listen(port,()=>{
     console.log(`listening to port: ${port}`)
