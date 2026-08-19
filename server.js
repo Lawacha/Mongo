@@ -7,7 +7,6 @@ const session=require('express-session')
 
 const port=3000
 
-
 app.use(session({secret:'mysecret',resave:false,saveUninitialized:true}))
 
 app.get('/count',(req,res)=>{
