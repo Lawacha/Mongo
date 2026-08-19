@@ -7,15 +7,18 @@ const session=require('express-session')
 
 const port=3000
 
-app.get('/getCookie',(req,res)=>{
-    res.cookie('name','supp')
-    res.send('name')
+
+app.use(session({secret:'mysecret',resave:false,saveUninitialized:true}))
+
+app.get('/count',(req,res)=>{
+    let{name='anonymous'}=req.query
+    req.session.name=name
+    res.send(req.session.name)    
 })
 
-app.use(session({secret:'mysecret'}))
-
 app.get('/verify',(req,res)=>{
-    res.send('hellow')
+    let {name}=req.query
+    res.send(`hellow, ${req.session.name}`)
 })
 
 app.listen(port,()=>{
